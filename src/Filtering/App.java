@@ -6,7 +6,6 @@
 package Filtering;
 
 import java.io.File;
-import java.util.Arrays;
 
 /**
  *

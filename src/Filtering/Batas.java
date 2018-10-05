@@ -8,7 +8,6 @@ package Filtering;
 import java.awt.Color;
 import java.awt.image.BufferedImage;
 import java.io.File;
-import java.util.Arrays;
 import javax.imageio.ImageIO;
 
 /**
@@ -18,12 +17,13 @@ import javax.imageio.ImageIO;
 public class Batas extends Neighbor implements FilterContract {
 
     private String context = "batas";
-    private BufferedImage image;
+    private BufferedImage image, newImage;
     private int width, height;
 
     public void filter(File file) {
         try {
             image = ImageIO.read(file);
+            newImage = ImageIO.read(file);
             width = image.getWidth();
             height = image.getHeight();
 
@@ -33,7 +33,7 @@ public class Batas extends Neighbor implements FilterContract {
                     int green = this.greenProcess(context, image, row, col, width, height);
                     int blue = this.blueProcess(context, image, row, col, width, height);
                     
-                    image.setRGB(row, col, new Color(red, green, blue).getRGB());
+                    newImage.setRGB(row, col, new Color(red, green, blue).getRGB());
                 }
             }
 
@@ -46,7 +46,7 @@ public class Batas extends Neighbor implements FilterContract {
     public void output() {
         try {
             File output = new File("/home/biobii/Pictures/batas.jpg");
-            ImageIO.write(image, "jpg", output);
+            ImageIO.write(newImage, "jpg", output);
 
             System.out.println("Filter Batas outputed!");
         } catch (Exception e) {
